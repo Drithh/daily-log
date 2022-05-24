@@ -4,18 +4,25 @@ const toggleShowDelete = (el) => {
 };
 
 const deleteRow = async (el) => {
-  el.parentNode.parentNode.classList.add('animate-height-exit');
-  await new Promise((r) => setTimeout(r, 700));
-  el.parentNode.parentNode.remove();
+  let success = true;
   const title = el.parentNode.parentNode
     .querySelector('.title')
     .innerHTML.trim();
 
-  fetch(`log-handler.php?delete=${title}`, {
+  const res = await fetch(`log-handler.php?delete=${title}`, {
     method: 'GET',
-  }).then((res) => {
-    console.log(res.text);
   });
+  [...res.headers].forEach(([key, value]) => {
+    if (key === 'message') {
+      alert(`Gagal Menghapus Row\n${value}`);
+      success = false;
+    }
+  });
+  if (success) {
+    el.parentNode.parentNode.classList.add('animate-height-exit');
+    await new Promise((r) => setTimeout(r, 700));
+    el.parentNode.parentNode.remove();
+  }
 };
 
 const addRow = async (el) => {
@@ -30,7 +37,11 @@ const addRow = async (el) => {
     method: 'POST',
     body: formData,
   });
-  console.log(await res.text());
+  [...res.headers].forEach(([key, value]) => {
+    if (key === 'message') {
+      alert(`Gagal Menambahkan Row\n${value}`);
+    }
+  });
 
   document.querySelector('#logs').innerHTML = await fetchData();
 };

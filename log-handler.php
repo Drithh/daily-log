@@ -24,6 +24,7 @@
 
 
 <?php
+chmod('daily-log.json', 0777);
 if (isset($_POST['title']) && isset($_POST['content'])) {
   if (isset($_POST['title']) && isset($_POST['content'])) {
     $title = @$_POST['title'];
@@ -49,8 +50,11 @@ if (isset($_POST['title']) && isset($_POST['content'])) {
 
     if (!$titleUsed) {
       $logs = array_merge($lastLogs, $log);
-      file_put_contents('daily-log.json', json_encode($logs)) or
+      if (!file_put_contents('daily-log.json', json_encode($logs))) {
+        $error = error_get_last()['message'];
+        header('message:' . $error);
         print_r(error_get_last());
+      }
     }
   }
 }
@@ -63,8 +67,11 @@ if (isset($_GET['delete'])) {
       unset($logs[$logTitle]);
     }
   }
-  file_put_contents('daily-log.json', json_encode($logs)) or
+  if (!file_put_contents('daily-log.json', json_encode($logs))) {
+    $error = error_get_last()['message'];
+    header('message:' . $error);
     print_r(error_get_last());
+  }
 }
 
 
