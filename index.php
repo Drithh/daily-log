@@ -37,8 +37,8 @@
     </header>
 
     <main class="mt-32 flex w-full max-w-4xl flex-col lg:w-[90%]">
-    <?php include 'logs.php'; ?>
-    <?php include 'log-handler.php'; ?>
+      <section id="logs"></section>
+      <?php include 'log-handler.php'; ?>
     </main>
   </body>
 </html>

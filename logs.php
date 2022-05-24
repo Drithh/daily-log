@@ -5,7 +5,7 @@ $logs = json_decode($encodedLogs, true);
 ?>
 
 <?php foreach ($logs as $title => $value) { ?>
-    <div class="log w-full font-Source mb-16 h-auto transition-all duration-1000" onmouseenter="toggleShowDelete(this)" onmouseleave="toggleShowDelete(this)">
+    <div class="log w-full font-Source mb-16 h-auto" onmouseenter="toggleShowDelete(this)" onmouseleave="toggleShowDelete(this)">
         <div class="flex place-content-between">
             <div class="text-left font-thin text-primary  text-lg text-opacity-70">
                 <?= $value['date'] ?>

@@ -468,18 +468,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.mb-24 {
-  margin-bottom: 6rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
 .mt-20 {
   margin-top: 5rem;
 }
@@ -490,6 +478,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-32 {
   margin-top: 8rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-24 {
+  margin-bottom: 6rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .mb-16 {
@@ -569,6 +569,35 @@ Ensure the default browser behavior of the `hidden` attribute.
 .animate-height-exit {
   -webkit-animation: shrink 1s linear;
           animation: shrink 1s linear;
+}
+
+@-webkit-keyframes expand {
+  0% {
+    max-height: 0px;
+    opacity: 0;
+  }
+
+  70% {
+    max-height: 100vh;
+    opacity: 1;
+  }
+}
+
+@keyframes expand {
+  0% {
+    max-height: 0px;
+    opacity: 0;
+  }
+
+  70% {
+    max-height: 100vh;
+    opacity: 1;
+  }
+}
+
+.animate-height-enter {
+  -webkit-animation: expand 1s linear;
+          animation: expand 1s linear;
 }
 
 .appearance-none {
@@ -669,10 +698,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: justify;
 }
 
-.font-Source {
-  font-family: Source Sans Pro, serif;
-}
-
 .font-PT {
   font-family: PT Sans, sans-serif;
 }
@@ -681,14 +706,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-family: Josefin Sans, sans-serif;
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.font-Source {
+  font-family: Source Sans Pro, serif;
 }
 
 .text-6xl {
@@ -699,6 +718,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-lg {
@@ -726,12 +755,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25;
 }
 
-.tracking-widest {
-  letter-spacing: .15em;
-}
-
 .tracking-wider {
   letter-spacing: .05em;
+}
+
+.tracking-widest {
+  letter-spacing: .15em;
 }
 
 .text-primary {

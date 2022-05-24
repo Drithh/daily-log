@@ -17,3 +17,33 @@ const deleteRow = async (el) => {
     console.log(res.text);
   });
 };
+
+const addRow = async (el) => {
+  let formData = new FormData();
+  const title = el.querySelector('#title');
+  const content = el.querySelector('#content');
+  formData.append('title', title.value);
+  formData.append('content', content.value);
+  title.value = '';
+  content.value = '';
+  const res = await fetch('log-handler.php', {
+    method: 'POST',
+    body: formData,
+  });
+  console.log(await res.text());
+
+  document.querySelector('#logs').innerHTML = await fetchData();
+};
+
+window.onload = async function () {
+  document.querySelector('#logs').innerHTML = await fetchData();
+};
+
+const fetchData = async () => {
+  const res = await fetch('logs.php');
+  return await res.text();
+};
+
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
+}
